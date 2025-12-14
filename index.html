@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PreDict-AI | AI-Powered Predictive Maintenance</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; overflow-x: hidden; }
+        .hero { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 100px 20px 80px; text-align: center; position: relative; }
+        .hero h1 { font-size: 3.5em; margin-bottom: 20px; animation: fadeIn 1s; }
+        .hero p { font-size: 1.4em; margin-bottom: 30px; opacity: 0.95; }
+        .cta-button { display: inline-block; padding: 15px 40px; background: white; color: #667eea; text-decoration: none; border-radius: 50px; font-weight: bold; font-size: 1.1em; transition: all 0.3s; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+        .cta-button:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(0,0,0,0.3); }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .section-title { text-align: center; font-size: 2.5em; margin-bottom: 50px; color: #2d3748; }
+        .problem-section { padding: 80px 20px; background: linear-gradient(to bottom, #f8f9fa, #ffffff); }
+        .problem-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 40px; }
+        .problem-card { background: white; padding: 40px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transition: transform 0.3s; }
+        .problem-card:hover { transform: translateY(-10px); box-shadow: 0 15px 40px rgba(0,0,0,0.15); }
+        .problem-card h3 { color: #667eea; font-size: 1.8em; margin-bottom: 15px; }
+        .problem-card p { font-size: 1.1em; line-height: 1.8; color: #555; }
+        .highlight { color: #e53e3e; font-weight: bold; font-size: 1.2em; }
+        .solution-section { padding: 80px 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; }
+        .solution-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 40px; }
+        .solution-card { background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); padding: 30px; border-radius: 15px; border: 2px solid rgba(255,255,255,0.2); transition: all 0.3s; }
+        .solution-card:hover { background: rgba(255,255,255,0.15); transform: scale(1.05); }
+        .solution-card h3 { font-size: 1.6em; margin-bottom: 15px; }
+        .architecture-section { padding: 80px 20px; background: white; }
+        .architecture-flow { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; margin-top: 50px; }
+        .flow-item { flex: 1; min-width: 250px; max-width: 280px; background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 30px; border-radius: 15px; text-align: center; box-shadow: 0 10px 30px rgba(102,126,234,0.3); }
+        .flow-item h4 { font-size: 1.4em; margin-bottom: 15px; }
+        .lstm-section { padding: 80px 20px; background: linear-gradient(to bottom, #f7fafc, #edf2f7); }
+        .lstm-advantages { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 40px; }
+        .advantage-card { background: white; padding: 35px; border-radius: 15px; border-left: 5px solid #667eea; box-shadow: 0 5px 20px rgba(0,0,0,0.08); }
+        .advantage-card h4 { color: #667eea; font-size: 1.5em; margin-bottom: 15px; }
+        .roi-section { padding: 80px 20px; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; }
+        .roi-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; margin-top: 40px; }
+        .stat-card { background: rgba(255,255,255,0.15); backdrop-filter: blur(10px); padding: 30px; border-radius: 15px; text-align: center; border: 2px solid rgba(255,255,255,0.2); }
+        .stat-number { font-size: 2.5em; font-weight: bold; margin-bottom: 10px; }
+        .stat-label { font-size: 1.1em; }
+        .status-section { padding: 80px 20px; background: white; }
+        .status-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 40px; }
+        .status-card { background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 30px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); }
+        .status-card h4 { font-size: 1.5em; margin-bottom: 15px; border-bottom: 2px solid rgba(255,255,255,0.3); padding-bottom: 10px; }
+        .accuracy-badge { display: inline-block; background: #48bb78; padding: 10px 20px; border-radius: 25px; font-weight: bold; font-size: 1.2em; margin-top: 10px; }
+        .contact-section { padding: 80px 20px; background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%); color: white; text-align: center; }
+        .contact-info { margin-top: 30px; font-size: 1.2em; }
+        .contact-info a { color: #667eea; text-decoration: none; font-weight: bold; }
+        .contact-info a:hover { color: #764ba2; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(-30px); } to { opacity: 1; transform: translateY(0); } }
+        @media (max-width: 768px) { .hero h1 { font-size: 2.5em; } .hero p { font-size: 1.2em; } .section-title { font-size: 2em; } }
+    </style>
+</head>
+<body>
+    <section class="hero">
+        <div class="hero-content">
+            <h1>PreDict-AI</h1>
+            <p>AI/ML-Based Predictive Maintenance System for Industrial Machines</p>
+            <p>Move from Reactive to Predictive Maintenance with 14-Day Advance Notice</p>
+            <a href="#contact" class="cta-button">Get Started Today</a>
+        </div>
+    </section>
+
+    <section class="problem-section">
+        <div class="container">
+            <h2 class="section-title">The Critical Problem We Solve</h2>
+            <div class="problem-grid">
+                <div class="problem-card">
+                    <h3>🚨 The Problem</h3>
+                    <p>Catastrophic machine failures cause sudden, unplanned production stops that cripple operations.</p>
+                </div>
+                <div class="problem-card">
+                    <h3>💰 The Impact</h3>
+                    <p>Lost production and repair costs: <span class="highlight">₹50,000 – ₹1,00,000 per hour</span> for large industries.</p>
+                </div>
+                <div class="problem-card">
+                    <h3>⚠️ Current Solutions Fail</h3>
+                    <p>Existing threshold-based alerts are too slow or generate false alarms, leading to missed failures or unnecessary maintenance.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="solution-section">
+        <div class="container">
+            <h2 class="section-title">Our AI-Powered Solution</h2>
+            <div class="solution-grid">
+                <div class="solution-card">
+                    <h3>🎯 The Goal</h3>
+                    <p>Move maintenance from Reactive/Preventive to truly Predictive.</p>
+                </div>
+                <div class="solution-card">
+                    <h3>🔧 The Solution</h3>
+                    <p>Multi-sensor array continuously monitors motor health. Deep Learning Model accurately predicts Remaining Useful Life (RUL).</p>
+                </div>
+                <div class="solution-card">
+                    <h3>✅ The Result</h3>
+                    <p>14-day advance notice to schedule repairs during off-production hours. Zero unexpected downtime.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="architecture-section">
+        <div class="container">
+            <h2 class="section-title">System Architecture: Complete Data Flow</h2>
+            <div class="architecture-flow">
+                <div class="flow-item">
+                    <h4>📡 Edge Layer</h4>
+                    <p>ESP32 Microcontroller + Tri-Axial Accelerometer collects data and performs local FFT processing.</p>
+                </div>
+                <div class="flow-item">
+                    <h4>☁️ Cloud Layer</h4>
+                    <p>Data transmitted via MQTT protocol to our Cloud Database backend.</p>
+                </div>
+                <div class="flow-item">
+                    <h4>🧠 AI Engine</h4>
+                    <p>LSTM Neural Network trained to predict Remaining Useful Life with precision.</p>
+                </div>
+                <div class="flow-item">
+                    <h4>📊 User Layer</h4>
+                    <p>Dashboard displays predicted RUL and real-time machine health status.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="lstm-section">
+        <div class="container">
+            <h2 class="section-title">The LSTM Deep Learning Advantage</h2>
+            <div class="lstm-advantages">
+                <div class="advantage-card">
+                    <h4>1. The Flaw in Existing Systems</h4>
+                    <p>Simple systems use static thresholds. Machine degradation is non-linear and complex, making threshold-based systems ineffective.</p>
+                </div>
+                <div class="advantage-card">
+                    <h4>2. Our Innovation</h4>
+                    <p>LSTM (Long Short-Term Memory) is a Recurrent Neural Network designed for time-series data. It learns complex degradation patterns and sequences for superior accuracy.</p>
+                </div>
+                <div class="advantage-card">
+                    <h4>3. Precise Output</h4>
+                    <p>Instead of simple ON/OFF alerts, we provide continuous, precise "Remaining Useful Life" (RUL) values for informed decision-making.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="roi-section">
+        <div class="container">
+            <h2 class="section-title">ROI: The Commercial Case</h2>
+            <div class="roi-stats">
+                <div class="stat-card">
+                    <div class="stat-number">₹75,000</div>
+                    <div class="stat-label">Unit Cost (Sensor + Microcontroller)</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">₹800/mo</div>
+                    <div class="stat-label">Monthly Subscription per Machine</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">10x</div>
+                    <div class="stat-label">Minimum ROI Guaranteed</div>
+                </div>
+            </div>
+            <div style="margin-top: 40px; text-align: center; font-size: 1.2em;">
+                <p><strong>Target Markets:</strong> Textile, Cement, and FMCG Manufacturing Sectors</p>
+                <p style="margin-top: 20px;">The subscription cost is negligible compared to one hour of lost production. Our system eliminates unplanned downtime completely.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="status-section">
+        <div class="container">
+            <h2 class="section-title">Current Status & Future Roadmap</h2>
+            <div class="status-grid">
+                <div class="status-card">
+                    <h4>✓ Prototype Functional</h4>
+                    <p>Our V1 prototype is fully functional and successfully calculates RUL on a controlled test rig.</p>
+                    <div class="accuracy-badge">95% Accuracy</div>
+                </div>
+                <div class="status-card">
+                    <h4>📈 Testing Results</h4>
+                    <p>Completed extensive data collection and initial model training. Initial validation shows 95% accuracy in RUL prediction.</p>
+                </div>
+                <div class="status-card">
+                    <h4>🚀 Next Steps</h4>
+                    <p><strong>Pilot Project:</strong> 3-month pilot with local textile/FMCG factory<br><br>
+                    <strong>Deployment:</strong> Cloud-based real-time data ingestion<br><br>
+                    <strong>Commercialization:</strong> IP protection & market launch</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-section" id="contact">
+        <div class="container">
+            <h2 class="section-title">Let's Transform Your Operations</h2>
+            <p style="font-size: 1.3em; margin: 30px 0;">PreDict-AI is a robust, scalable solution that solves a multi-core problem for Indian industry.</p>
+            <p style="font-size: 1.2em; margin: 20px 0;">We have the technical expertise and business model to succeed.</p>
+            <p style="font-size: 1.3em; margin: 30px 0; font-weight: bold;">We are seeking the ₹10 Lakh Ignition Grant to deploy a pilot program in our target industry.</p>
+            <div class="contact-info">
+                <p>For inquiries and partnership opportunities:</p>
+                <p><a href="mailto:sripranavi691@gmail.com">sripranavi691@gmail.com</a></p>
+            </div>
+            <p style="margin-top: 40px; font-size: 1.1em; font-style: italic;">Industrializing the future of predictive maintenance, one asset at a time.</p>
+        </div>
+    </section>
+</body>
+</html>
